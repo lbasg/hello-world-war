@@ -22,7 +22,7 @@ jobs:
           mvn install clean package
       - name: scp artifact
         run: | 
-          ls -ltr
+          ls -ltr target
   
         
   
