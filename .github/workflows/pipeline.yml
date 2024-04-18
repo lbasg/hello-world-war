@@ -24,6 +24,20 @@ jobs:
       - name: mvn install
         run: | 
           mvn install clean package
+      - name: Check for Dockerfile
+        id: Dockerfile_check
+        run: |
+          if test -f "Dockerfile"; then
+          echo "check_result=true" >> $GITHUB_OUTPUT
+          else
+          echo "check_result=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Run dependent step
+        if: steps.Dockerfile_check.outputs.check_result == 'true'
+        run: |
+         echo Docker build
+      - name: push image
+        run: echo push image to registry
       - name: scp artifact
         run: | 
           echo $GITHUB_REF | cut -f3 -d/
