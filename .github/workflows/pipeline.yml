@@ -19,7 +19,10 @@ jobs:
           mvn -version
       - name: mvn install
         run: | 
-          mvn install clean package -DmyCustomName=test
+          mvn install clean package
+      - name: scp artifact
+        run: | 
+          ls -ltr
   
         
   
