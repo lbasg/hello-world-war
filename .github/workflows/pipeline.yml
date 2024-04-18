@@ -1,11 +1,16 @@
 name: pipeline
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
+      - name: GITHUB_REF
+        run: echo $GITHUB_REF
       - name: checkout
         uses: actions/checkout@v4
       - name: install java
