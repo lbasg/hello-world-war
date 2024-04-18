@@ -9,7 +9,7 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: configure runner
+      - name: Configure runner
         run: |
           sudo apt-get install sshpass
           sudo apt-get update
@@ -19,9 +19,9 @@ jobs:
           sudo apt update
           sudo apt install maven
           mvn -version
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: mvn install
+      - name: Build
         run: | 
           mvn install clean package
       - name: Check for Dockerfile
@@ -36,14 +36,14 @@ jobs:
         if: steps.Dockerfile_check.outputs.check_result == 'true'
         run: |
          echo Docker build
-      - name: push image
+      - name: Push image
         if: steps.Dockerfile_check.outputs.check_result == 'true'
         run: echo push image to registry
-      - name: scp artifact
+      - name: Store artifact
         if: steps.Dockerfile_check.outputs.check_result == 'false'
         run: | 
           echo $GITHUB_REF | cut -f3 -d/
-      - name: deploy
+      - name: Deploy
         run: | 
           echo 'call deploy'
   
