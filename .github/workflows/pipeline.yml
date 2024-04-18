@@ -19,7 +19,7 @@ jobs:
           mvn -version
       - name: mvn install
         run: | 
-          mvn install clean package
+          mvn install clean package -DmyCustomName=test
   
         
   
