@@ -24,7 +24,7 @@ jobs:
           mvn -version
       - name: mvn install
         run: | 
-          mvn install clean package -Dmy.warName=renombrado
+          mvn install clean package
       - name: scp artifact
         run: | 
           ls -ltr target
