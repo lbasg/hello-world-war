@@ -28,6 +28,9 @@ jobs:
       - name: scp artifact
         run: | 
           ls -ltr target
+      - name: deploy
+        run: | 
+          echo 'call deploy'
   
         
   
