@@ -10,9 +10,9 @@ jobs:
         uses: actions/checkout@v4
       - name: install java
         run: | 
-          apt-get update
-          apt-install java
-          apt-install maven
+          sudo apt-get update
+          sudo apt-install java
+          sudo apt-install maven
         
   
   
