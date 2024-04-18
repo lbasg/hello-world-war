@@ -32,13 +32,15 @@ jobs:
           else
           echo "check_result=false" >> $GITHUB_OUTPUT
           fi
-      - name: Run dependent step
+      - name: Docker build
         if: steps.Dockerfile_check.outputs.check_result == 'true'
         run: |
          echo Docker build
       - name: push image
+        if: steps.Dockerfile_check.outputs.check_result == 'true'
         run: echo push image to registry
       - name: scp artifact
+        if: steps.Dockerfile_check.outputs.check_result == 'false'
         run: | 
           echo $GITHUB_REF | cut -f3 -d/
       - name: deploy
