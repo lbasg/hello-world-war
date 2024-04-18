@@ -14,8 +14,9 @@ jobs:
           java -version
           sudo apt install default-jre
           java -version
+          sudo apt update
           sudo apt install maven
-          maven -version
+          mvn -version
           
         
   
