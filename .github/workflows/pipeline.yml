@@ -9,12 +9,9 @@ jobs:
   pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: GITHUB_REF
-        run: echo $GITHUB_REF | cut -f3 -d/
-      - name: checkout
-        uses: actions/checkout@v4
-      - name: install java
-        run: | 
+      - name: configure runner
+        run: |
+          sudo apt-get install sshpass
           sudo apt-get update
           java -version
           sudo apt install default-jre
@@ -22,12 +19,14 @@ jobs:
           sudo apt update
           sudo apt install maven
           mvn -version
+      - name: checkout
+        uses: actions/checkout@v4
       - name: mvn install
         run: | 
           mvn install clean package
       - name: scp artifact
         run: | 
-          ls -ltr target
+          echo $GITHUB_REF | cut -f3 -d/
       - name: deploy
         run: | 
           echo 'call deploy'
