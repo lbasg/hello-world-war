@@ -11,8 +11,10 @@ jobs:
       - name: install java
         run: | 
           sudo apt-get update
-          sudo apt-get install java
-          sudo apt-get install maven
+          java -version
+          sudo apt install default-jre
+          java -version
+          
         
   
   
